@@ -37,8 +37,29 @@ for (let line of variantsFileContent) {
     }
 }
 
-// console.dir(tradToSimpMap);
 const t2sObjLiteral = `const tradToSimp = ${JSON.stringify(tradToSimpMap, null, 4)};`;
 fs.writeFileSync(path.join(__dirname, '/Output/t2s.js'), t2sObjLiteral);
+
+// Process pinyin
+const readingsFileContent = readFile('Unihan_Readings.txt');
+let pinyinMap = {}
+for (let line of readingsFileContent) {
+    if (line[0] === '#') continue;
+    if (line.length < 1) continue;
+
+    const lineFields = line.split('\t');
+    if (lineFields[1] === 'kMandarin') {
+        let char = unicodeStrToChar(lineFields[0]);
+        let pinyin = lineFields[2];
+        if (pinyinMap[char]) {
+            console.log('CLASH FOR: ' + char)
+        } else {
+            pinyinMap[char] = pinyin;
+        }
+    }
+}
+
+const pinyinObjLiteral = `const pinyin = ${JSON.stringify(pinyinMap, null, 4)};`;
+fs.writeFileSync(path.join(__dirname, '/Output/pinyin.js'), pinyinObjLiteral);
 
 

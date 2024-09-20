@@ -11,26 +11,26 @@ observer.observe(document, { attributes: false, childList: true, characterData: 
 
 function init() {
     const lyricElements = Array.from(document.querySelectorAll(lyricElementSelector))
-    for(let lyricElement of lyricElements){
+    for (let lyricElement of lyricElements) {
 
         let lyricTextDiv = lyricElement.childNodes[0];
 
         let lyricText = lyricTextDiv.innerText;
 
-        let simplifiedText = ""
-        let pinyinText = ""
+        let simplifiedText = "";
+        let pinyinText = "";
 
-        for(let char of lyricText){
-            simplifiedText += tradToSimp[char] ? tradToSimp[char] : char
-            pinyinText += `${pinyin[char]} `
+        for (let char of lyricText) {
+            simplifiedText += tradToSimp[char] ? tradToSimp[char] : char;
+            pinyinText += pinyin[char] ? `${pinyin[char]} ` : " ";
         }
 
-        lyricTextDiv.innerHTML = `${pinyinText}<br/>${simplifiedText}`;
+        lyricTextDiv.innerHTML = pinyinText.trim() !== "" ? `${pinyinText}<br/>${simplifiedText}` :  simplifiedText;
 
 
-        console.log(lyricText)
-        console.log(simplifiedText)
-        console.log(pinyinText)
-        console.log("---")
+        console.log(lyricText);
+        console.log(simplifiedText);
+        console.log(pinyinText);
+        console.log("---");
     }
 }

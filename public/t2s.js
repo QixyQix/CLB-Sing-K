@@ -6915,4 +6915,3 @@ const tradToSimp = {
     "𱋂": "𪋈",
     "𱵭": "𮵚"
 };
-module.exports = tradToSimp

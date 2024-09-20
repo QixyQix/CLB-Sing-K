@@ -24,7 +24,7 @@
     "content_scripts": [
     {
       "matches": ["https://open.spotify.com/*"],
-      "js": ["background.js", "t2s.js"]
+      "js": ["background.js", "t2s.js", "pinyin.js"]
     }
   ]
 }

@@ -12,15 +12,25 @@ observer.observe(document, { attributes: false, childList: true, characterData: 
 function init() {
     const lyricElements = Array.from(document.querySelectorAll(lyricElementSelector))
     for(let lyricElement of lyricElements){
-        let lyricTextDiv = lyricElement.childNodes[0]
-        let lyricText = lyricTextDiv.innerText
+
+        let lyricTextDiv = lyricElement.childNodes[0];
+
+        let lyricText = lyricTextDiv.innerText;
+
         let simplifiedText = ""
+        let pinyinText = ""
+
         for(let char of lyricText){
             simplifiedText += tradToSimp[char] ? tradToSimp[char] : char
+            pinyinText += `${pinyin[char]} `
         }
-        console.log(lyricTextDiv.innerText)
-        lyricTextDiv.innerText = simplifiedText;
-        console.log(lyricTextDiv.innerText)
+
+        lyricTextDiv.innerHTML = `${pinyinText}<br/>${simplifiedText}`;
+
+
+        console.log(lyricText)
+        console.log(simplifiedText)
+        console.log(pinyinText)
         console.log("---")
     }
 }

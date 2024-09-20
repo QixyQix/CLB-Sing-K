@@ -25,7 +25,7 @@ function init() {
             pinyinText += pinyin[char] ? `${pinyin[char]} ` : " ";
         }
 
-        lyricTextDiv.innerHTML = pinyinText.trim() !== "" ? `${pinyinText}<br/>${simplifiedText}` :  simplifiedText;
+        lyricTextDiv.innerHTML = pinyinText.trim() !== "" ? `<span style="font-size:1.4rem;line-height:0.5rem">${pinyinText}</span><br/>${simplifiedText}` :  simplifiedText;
 
 
         console.log(lyricText);

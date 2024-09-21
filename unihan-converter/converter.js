@@ -31,9 +31,8 @@ for (let line of variantsFileContent) {
         let simpChar = unicodeStrToChar(lineFields[2]);
         if (tradToSimpMap[tradChar]) {
             console.log('CLASH FOR: ' + tradChar)
-        } else {
-            tradToSimpMap[tradChar] = simpChar;
         }
+        tradToSimpMap[tradChar] = simpChar;
     }
 }
 
@@ -53,9 +52,8 @@ for (let line of readingsFileContent) {
         let pinyin = lineFields[2];
         if (pinyinMap[char]) {
             console.log('CLASH FOR: ' + char)
-        } else {
-            pinyinMap[char] = pinyin;
         }
+        pinyinMap[char] = pinyin.split(' ')[0];
     }
 }
 

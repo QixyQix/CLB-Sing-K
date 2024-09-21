@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "version": "0.0.1",
-    "name": "CLB Sing K",
-    "description": "Change traditional chinese to simplified chinese for Spotify Web Player lyrics",
+    "name": "我也要唱K (CLB Sing K)",
+    "description": "Change traditional chinese to simplified chinese and provide pinyin for Spotify Web Player lyrics",
     "icons":{
         "16": "icon.png",
         "32": "icon.png",
@@ -18,8 +18,7 @@
         "declarativeContent"
     ],
     "host_permissions":[
-        "http://*/*",
-        "https://*/*"
+        "https://open.spotify.com/*"
     ],
     "content_scripts": [
     {

@@ -39,7 +39,7 @@ function init() {
 
         for (let char of lyricText) {
             simplifiedText += tradToSimp[char] ? tradToSimp[char] : char;
-            pinyinText += pinyin[char] ? `${pinyin[char]} ` : " ";
+            pinyinText += pinyin[char] ? ` ${pinyin[char]} ` : char.toUpperCase();
         }
 
         lyricTextDiv.innerHTML = pinyinText.trim() !== "" ? `<span style="font-size:1.4rem;line-height:0.5rem">${pinyinText}</span><br/>${simplifiedText}` :  simplifiedText;

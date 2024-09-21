@@ -24,7 +24,9 @@ const childListObserver = new MutationObserver((mutationList) => {
 function init() {
     const lyricElements = Array.from(document.querySelectorAll(lyricElementSelector))
     if(!overallParentDiv){
-        overallParentDiv = lyricElements[0].parentNode.parentNode;
+        overallParentDiv = lyricElements[0].parentNode.parentNode.parentNode;
+        console.log("Parent Node:")
+        console.dir(overallParentDiv);
     }
     for (let lyricElement of lyricElements) {
 

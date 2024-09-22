@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -54,6 +54,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+select {
+  background-color: #213547;
+  color: rgba(255, 255, 255, 0.87);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -64,5 +69,9 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+  select {
+    background-color: #ffffff;
+    color: #213547;
   }
 }

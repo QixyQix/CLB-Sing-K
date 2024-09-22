@@ -1,41 +1,31 @@
 import { useState } from 'react'
 import './App.css'
+import { SelectInput } from './SelectInput'
 
 function App() {
+  const charOptions = [{ title: "Simplified (简体)", value: "char-simplified" }, { title: "Traditional (繁體)", value: "char-traditional" }]
+  const pinyinOptions = [{ title: "Small Font", value: "pinyin-small" }, { title: "Regular Font", value: "pinyin-reg" }, { title: "Disabled", value: "pinyin-disabled" }]
+  const pinyinPrefOptions = [{ title: "zh-Hans (CN)", value: "pinyin-pref-cn" }, { title: "zh-Hant (TW)", value: "pinyin-pref-tw" }]
+
+  const [charSetting, setCharSetting] = useState("char-simplified")
+  const [pinyinSetting, setPinyinSetting] = useState("pinyin-small")
+  const [pinyinPrefSetting, setPinyinPrefSetting] = useState("pinyin-pref-cn")
+
   return (
     <>
       <h1>我也要唱K</h1>
       <h2>CLB Sing K</h2>
       <p>Chrome extension to convert traditional chinese lyrics to simplified chinese, and provide pīnyīn, for Spotify's web player</p>
 
-      <hr/>
+      <hr />
       <h3>Settings</h3>
-      <div>
-        <div>
-          <label for="char-setting">Chinese Character</label>
-          <select name="char-setting" id="char-setting" required="required" aria-required="true">
-            <option value="char-simplified" selected="true" id="char-setting-0">Simplified (简体)</option>
-            <option value="char-traditional" id="char-setting-1">Traditional (繁體)</option>
-          </select>
-        </div>
-        <div>
-          <label for="pinyin-setting">Pinyin</label>
-          <select name="pinyin-setting" id="pinyin-setting" required="required" aria-required="true">
-            <option value="pinyin-small" selected="true" id="pinyin-setting-0">Small Size</option>
-            <option value="pinyin-reg" id="pinyin-setting-1">Regular Size</option>
-            <option value="pinyin-disabled" id="pinyin-setting-2">Disabled</option>
-          </select>
-        </div>
-        <div>
-          <label for="pinyin-pref-setting">Pinyin Preference</label>
-          <select name="pinyin-pref-setting" id="pinyin-pref-setting" required="required" aria-required="true">
-            <option value="pinyin-pref-cn" selected="true" id="pinyin-pref-setting-0">zh-Hans (CN)</option>
-            <option value="pinyin-pref-tw" id="pinyin-pref-setting-1">zh-Hant (TW)</option>
-          </select>
-        </div>
-      </div>
+      <form className='form-centered'>
+        <SelectInput value={charSetting} onChange={setCharSetting} label="Chinese Character" options={charOptions} valueKey="value" displayKey="title"/>
+        <SelectInput value={pinyinSetting} onChange={setPinyinSetting} label="Pinyin" options={pinyinOptions} valueKey="value" displayKey="title"/>
+        <SelectInput value={pinyinPrefSetting} onChange={setPinyinPrefSetting}label="Pinyin Preference" options={pinyinPrefOptions} valueKey="value" displayKey="title"/>
+      </form>
 
-      <hr/>
+      <hr />
 
       <p>Made with ❤️ by <a href='https://github.com/QixyQix' target='_blank'>Qi Xiang</a></p>
 

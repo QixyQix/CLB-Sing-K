@@ -15,7 +15,8 @@
     "permissions":[
         "scripting",
         "activeTab",
-        "declarativeContent"
+        "declarativeContent",
+        "storage"
     ],
     "host_permissions":[
         "https://open.spotify.com/*"

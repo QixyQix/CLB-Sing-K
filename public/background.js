@@ -1,6 +1,16 @@
 const lyricElementSelector = '[data-testid="fullscreen-lyric"]';
 let overallParentDiv = undefined;
 
+// Listen for changes to storage
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    console.log("SETTING CHANGE DETECTED!")
+    console.dir(changes);
+    console.log("NAMESPACE IS")
+    console.dir(namespace);
+    if (namespace === 'sync' && changes.clbSingKSettings) {
+        // init()
+    }
+  });
 
 const observer = new MutationObserver(() => {
     if (document.querySelector(lyricElementSelector)) {

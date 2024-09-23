@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import { SelectInput } from './SelectInput'
 
 function App() {
+  const initialMount = useRef(true);
+
   const charOptions = [{ title: "Simplified (简体)", value: "char-simplified" }, { title: "Traditional (繁體)", value: "char-traditional" }]
   const pinyinOptions = [{ title: "Small Font", value: "pinyin-small" }, { title: "Regular Font", value: "pinyin-reg" }, { title: "Disabled", value: "pinyin-disabled" }]
   const pinyinPrefOptions = [{ title: "zh-Hans (CN)", value: "pinyin-pref-cn" }, { title: "zh-Hant (TW)", value: "pinyin-pref-tw" }]
@@ -27,6 +29,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if(initialMount.current){
+      initialMount.current = false;
+      return;
+    }
     const settingObj = { char: charSetting, pinyin: pinyinSetting, pinyinPref: pinyinPrefSetting }
     chrome.storage.sync.set({ clbSingKSettings: settingObj })
   }, [charSetting, pinyinSetting, pinyinPrefSetting]);

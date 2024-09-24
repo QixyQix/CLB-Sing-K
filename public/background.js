@@ -1,10 +1,20 @@
+const CHAR_SIMPLIFIED = "char-simplified";
+const CHAR_TRADITIONAL = "char-traditional";
+
+const PINYIN_SMALL = "pinyin-small";
+const PINYIN_REG = "pinyin-reg";
+const PINYIN_DISABLED = "pinyin-disabled";
+
+const PINYIN_PREF_CN = "pinyin-pref-cn";
+const PINYIN_PREF_TW = "pinyin-pref-tw";
+
 const lyricElementSelector = '[data-testid="fullscreen-lyric"]';
 const overallParentSelector = 'main';
 
 const settings = {
-    char: "char-simplified",
-    pinyin: "pinyin-small",
-    pinyinPref: "pinyin-pref-cn"
+    char:  CHAR_SIMPLIFIED,
+    pinyin: PINYIN_SMALL,
+    pinyinPref: PINYIN_PREF_CN
 }
 
 let lyricStorage = {};
@@ -46,20 +56,16 @@ function loadSettings() {
 
 function updateSettingsAndProcessLyrics(settingsObj) {
     if (!settingsObj) settingsObj = {};
-    settings.char = settingsObj["char"] ? settingsObj["char"] : "char-simplified";
-    settings.pinyin = settingsObj["pinyin"] ? settingsObj["pinyin"] : "pinyin-small";
-    settings.pinyinPref = settingsObj["pinyinPref"] ? settingsObj["pinyinPref"] : "pinyin-pref-cn";
+    settings.char = settingsObj["char"] ? settingsObj["char"] :  CHAR_SIMPLIFIED;
+    settings.pinyin = settingsObj["pinyin"] ? settingsObj["pinyin"] : PINYIN_SMALL;
+    settings.pinyinPref = settingsObj["pinyinPref"] ? settingsObj["pinyinPref"] : PINYIN_PREF_CN;
 
-    console.log("Settings updated");
-    console.dir(settings);
     processLyrics();
 }
 
 function getOverallParentDiv() {
     if (overallParentDiv) return;
     overallParentDiv = document.querySelector(overallParentSelector);
-    console.log("Parent Node:")
-    console.dir(overallParentDiv);
 }
 
 function processLyrics() {
@@ -87,18 +93,22 @@ function processLyrics() {
             lyricStorage[lyricTag] = lyricData;
         }
 
+        if(lyricData.skipped){
+            continue;
+        }
+
         let innerHTMLforLyric = "";
 
-        if (settings.pinyin !== "pinyin-disabled") {
-            innerHTMLforLyric = lyricData.pinyinText;
+        if (settings.pinyin !== PINYIN_DISABLED) {
+            innerHTMLforLyric = settings.pinyinPref === PINYIN_PREF_TW ? getLyricPinyin(lyricData.originalText) : getLyricPinyin(lyricData.simplifiedText);
 
-            if (settings.pinyin === "pinyin-small") {
+            if (settings.pinyin === PINYIN_SMALL) {
                 innerHTMLforLyric = `<span style="font-size:1.4rem;line-height:0.5rem">${innerHTMLforLyric}</span>`
             }
             innerHTMLforLyric += "<br/>"
         }
 
-        if (settings.char === "char-simplified") {
+        if (settings.char ===  CHAR_SIMPLIFIED) {
             innerHTMLforLyric += lyricData.simplifiedText;
         } else {
             innerHTMLforLyric += lyricData.originalText;
@@ -114,14 +124,34 @@ function processLyrics() {
 }
 
 function convertTraditionalLyric(originalText) {
-    let simplifiedText = "";
-    let pinyinText = "";
-
-    for (let char of originalText) {
-        simplifiedText += tradToSimp[char] ? tradToSimp[char] : char;
-        pinyinText += pinyin[char] ? ` ${pinyin[char]} ` : char.toUpperCase();
+    if (!containsChineseCharacters(originalText)) {
+        return { originalText, simplifiedText: "", skipped: true }
     }
 
-    return { originalText, simplifiedText, pinyinText }
+    let simplifiedText = "";
+    for (let char of originalText) {
+        simplifiedText += tradToSimp[char] ? tradToSimp[char] : char;
+    }
 
+    return { originalText, simplifiedText, skipped: false }
+}
+
+function containsChineseCharacters(str) {
+    const chineseCharRegex = /[\u4E00-\u9FFF\u3400-\u4DBF]/;
+    return chineseCharRegex.test(str);
+}
+
+function getLyricPinyin(lyricText) {
+    let pinyinText = "";
+
+    for (let char of lyricText) {
+        if (!pinyin[char]) {
+            pinyinText += char.toUpperCase();
+        } else {
+            let possiblePinyins = pinyin[char].split(" ");
+            pinyinText += (settings.pinyinPref === PINYIN_PREF_TW && possiblePinyins.length > 1) ? ` ${possiblePinyins[1]} ` : ` ${possiblePinyins[0]} `;
+        }
+    }
+
+    return pinyinText;
 }

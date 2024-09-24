@@ -2,25 +2,35 @@ import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import { SelectInput } from './SelectInput'
 
+const CHAR_SIMPLIFIED = "char-simplified";
+const CHAR_TRADITIONAL = "char-traditional";
+
+const PINYIN_SMALL = "pinyin-small";
+const PINYIN_REG = "pinyin-reg";
+const PINYIN_DISABLED = "pinyin-disabled";
+
+const PINYIN_PREF_CN = "pinyin-pref-cn";
+const PINYIN_PREF_TW = "pinyin-pref-tw";
+
 function App() {
   const initialMount = useRef(true);
 
-  const charOptions = [{ title: "Simplified (简体)", value: "char-simplified" }, { title: "Traditional (繁體)", value: "char-traditional" }]
-  const pinyinOptions = [{ title: "Small Font", value: "pinyin-small" }, { title: "Regular Font", value: "pinyin-reg" }, { title: "Disabled", value: "pinyin-disabled" }]
-  const pinyinPrefOptions = [{ title: "zh-Hans (CN)", value: "pinyin-pref-cn" }, { title: "zh-Hant (TW)", value: "pinyin-pref-tw" }]
+  const charOptions = [{ title: "Simplified (简体)", value: CHAR_SIMPLIFIED }, { title: "Traditional (繁體)", value: CHAR_TRADITIONAL }]
+  const pinyinOptions = [{ title: "Small Font", value: PINYIN_SMALL }, { title: "Regular Font", value: PINYIN_REG }, { title: "Disabled", value: PINYIN_DISABLED }]
+  const pinyinPrefOptions = [{ title: "zh-Hans (CN)", value: PINYIN_PREF_CN }, { title: "zh-Hant (TW)", value: PINYIN_PREF_TW }]
 
-  const [charSetting, setCharSetting] = useState("char-simplified")
-  const [pinyinSetting, setPinyinSetting] = useState("pinyin-small")
-  const [pinyinPrefSetting, setPinyinPrefSetting] = useState("pinyin-pref-cn")
+  const [charSetting, setCharSetting] = useState(CHAR_SIMPLIFIED)
+  const [pinyinSetting, setPinyinSetting] = useState(PINYIN_SMALL)
+  const [pinyinPrefSetting, setPinyinPrefSetting] = useState(PINYIN_PREF_CN)
 
   useEffect(() => {
     console.log("Loading Settings for CLB Sing K")
     chrome.storage.sync.get('clbSingKSettings', (settings) => {
       settings = settings.clbSingKSettings;
 
-      let loadedCharSetting = settings["char"] ? settings["char"] : "char-simplified";
-      let loadedPinyinSetting = settings["pinyin"] ? settings["pinyin"] : "pinyin-small";
-      let loadedPinyinPrefSetting = settings["pinyinPref"] ? settings["pinyinPref"] : "pinyin-pref-cn"
+      let loadedCharSetting = settings["char"] ? settings["char"] : CHAR_SIMPLIFIED;
+      let loadedPinyinSetting = settings["pinyin"] ? settings["pinyin"] : PINYIN_SMALL;
+      let loadedPinyinPrefSetting = settings["pinyinPref"] ? settings["pinyinPref"] : PINYIN_PREF_CN
 
       setCharSetting(loadedCharSetting)
       setPinyinSetting(loadedPinyinSetting)

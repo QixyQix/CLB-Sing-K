@@ -47,6 +47,13 @@ function App() {
     chrome.storage.sync.set({ clbSingKSettings: settingObj })
   }, [charSetting, pinyinSetting, pinyinPrefSetting]);
 
+  function judgeUser(){
+    if(charSetting === CHAR_SIMPLIFIED && pinyinSetting !== PINYIN_DISABLED) return "You probably went to CLB.";
+    if(charSetting === CHAR_SIMPLIFIED && pinyinSetting === PINYIN_DISABLED) return "Wow... 高级华文 。";
+    if(charSetting === CHAR_TRADITIONAL && pinyinSetting !== PINYIN_DISABLED) return "I see you're a traditionalist.";
+    if(charSetting === CHAR_TRADITIONAL && pinyinSetting === PINYIN_DISABLED) return "Why do you even have this extension installed?";
+  }
+
   return (
     <>
       <h1>我也要唱K</h1>
@@ -61,6 +68,8 @@ function App() {
         <SelectInput value={pinyinSetting} onChange={setPinyinSetting} label="Pinyin" options={pinyinOptions} valueKey="value" displayKey="title" />
         <SelectInput value={pinyinPrefSetting} onChange={setPinyinPrefSetting} label="Pinyin Preference" options={pinyinPrefOptions} valueKey="value" displayKey="title" />
       </form>
+
+      <p>{judgeUser()}</p>
 
       <hr />
 

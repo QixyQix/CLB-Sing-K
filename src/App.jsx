@@ -73,7 +73,8 @@ function App() {
 
       <hr />
 
-      <p>Made with ❤️ by <a href='https://github.com/QixyQix' target='_blank'>Qi Xiang</a></p>
+      <p>Made with ❤️ by Qi Xiang</p>
+      <a href='https://github.com/QixyQix/CLB-Sing-K' target='_blank'><i className='githubIcon'/></a>
     </>
   )
 }

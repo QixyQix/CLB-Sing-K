@@ -53,7 +53,7 @@ for (let line of readingsFileContent) {
         if (pinyinMap[char]) {
             console.log('CLASH FOR: ' + char)
         }
-        pinyinMap[char] = pinyin.split(' ')[0];
+        pinyinMap[char] = pinyin;
     }
 }
 

@@ -5,38 +5,37 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.form-centered {
+  display: flex;
+  flex-direction: column; /* Stack form groups vertically */
+  align-items: center; /* Center the form groups within the form */
+  width: 100%; /* Adjust to your form's desired width */
+  max-width: 600px; /* Optional: set a max width */
+  margin: 0 auto; /* Center the form on the page */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* Space between each form group */
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-centered label {
+  flex: 0 0 29%; /* Label takes fixed width */
+  margin-right: 1%; /* Space between label and dropdown */
+  text-align: right; 
+}
+
+.form-centered select {
+  flex: 1; /* Dropdowns will expand equally */
+  padding: 8px;
+  max-width: 300px;
+  border-radius: 5px;
+  font-size: 1em;
 }

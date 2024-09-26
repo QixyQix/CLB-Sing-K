@@ -13,9 +13,6 @@
         "default_popup": "index.html"
     },
     "permissions":[
-        "scripting",
-        "activeTab",
-        "declarativeContent",
         "storage"
     ],
     "host_permissions":[

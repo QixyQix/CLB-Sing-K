@@ -67,6 +67,13 @@ select {
   background-size: contain;
 }
 
+.versionShields{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

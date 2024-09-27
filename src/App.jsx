@@ -74,7 +74,16 @@ function App() {
       <hr />
 
       <p>Made with ❤️ by Qi Xiang</p>
+
       <a href='https://github.com/QixyQix/CLB-Sing-K' target='_blank'><i className='githubIcon'/></a>
+
+      <p className='versionShields'>
+        {/* CURRENT VERSION SHIELD */}
+        <img src='https://img.shields.io/badge/version-v0.1.0-blue'/> 
+        {/* LATEST RELEASE SHEILD */} 
+        <img src='https://img.shields.io/github/v/release/QixyQix/CLB-Sing-K'/>
+
+      </p>
     </>
   )
 }

@@ -9,7 +9,7 @@ Designed by a former [Chinese Language Basic (CLB)](https://www.languagecouncils
 [![Latest Release](https://img.shields.io/github/v/release/QixyQix/CLB-Sing-K)](https://github.com/QixyQix/CLB-Sing-K/releases/latest)
 [![Issues](https://img.shields.io/github/issues/QixyQix/CLB-Sing-K)](https://github.com/QixyQix/CLB-Sing-K/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/QixyQix/CLB-Sing-K)](https://github.com/QixyQix/CLB-Sing-K/pulls)
-[![MIT License](https://img.shields.io/packagist/l/QixyQix/CLB-Sing-K)](LICENSE)
+[![MIT License](https://img.shields.io/github/license/QixyQix/CLB-Sing-K)](LICENSE)
 
 
 ## Installation Guide

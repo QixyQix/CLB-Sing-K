@@ -79,7 +79,7 @@ function App() {
 
       <p className='versionShields'>
         {/* CURRENT VERSION SHIELD */}
-        <img src='https://img.shields.io/badge/version-v0.1.0-blue'/> 
+        <img src='https://img.shields.io/badge/version-v1.0.0-blue'/> 
         {/* LATEST RELEASE SHEILD */} 
         <img src='https://img.shields.io/github/v/release/QixyQix/CLB-Sing-K'/>
 
